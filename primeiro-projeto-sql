@@ -1,0 +1,313 @@
+create table clientes (
+idcliente int primary key auto_increment,
+nome varchar(30) not null,
+sexo enum('m','f')not null,
+email varchar(50) unique,   
+cpf varchar(15) unique
+);
+
+create table endereco (
+idendereco int primary key auto_increment,
+rua varchar(30) not null,
+bairro varchar(30) not null,
+cidade varchar(30) not null,
+estado char(2) not null,
+id_cliente int unique,
+
+foreign key(id_cliente)
+references clientes (idcliente)
+
+);
+
+create table telefone(
+idtelefone int primary key auto_increment,
+tipo enum('res','com','cel'),
+numero varchar(10) not null,
+id_cliente int,
+
+foreign key(id_cliente)
+references clientes (idcliente)
+);
+
+desc clientes;
+
+insert into clientes values(null,'manoel','m','manoelgomes23@gmail','45392091674');
+insert into clientes values(null,'julia','f','juliak89@gmail','54839254037');
+insert into clientes values(null,'rodolfo','m','rodolfinhohot7@gmail','93650263954');
+insert into clientes values(null,'cristina','f','crisnatalia@gmail','74329548395');
+insert into clientes values(null,'claudia','f','claudinhahuj@gmail','09162739548');
+insert into clientes values(null,'kaio','m','kaionapika@gmail','16392493574');
+insert into clientes values(null,'paula','f','paulatejano@gmail','02439143757');
+insert into clientes values(null,'jamil','m','jamilsilva@gmail','75063241650');
+insert into clientes values(null,'fernanda','f','fernandinhafernandez@gmail','45392018562');
+insert into clientes values(null,'alex','m','alexmason@gmail','67342719304');
+
+INSERT INTO clientes VALUES(NULL,'FLAVIO','M','FLAVIO@IG.COM','4657765');
+INSERT INTO clientes VALUES(NULL,'ANDRE','M','ANDRE@GLOBO.COM','7687567');
+INSERT INTO clientes VALUES(NULL,'GIOVANA','F',NULL,'0876655');
+INSERT INTO clientes VALUES(NULL,'KARLA','M','KARLA@GMAIL.COM','545676778');
+INSERT INTO clientes VALUES(NULL,'DANIELE','M','DANIELE@GMAIL.COM','43536789');
+INSERT INTO clientes VALUES(NULL,'LORENA','M',NULL,'774557887');
+INSERT INTO clientes VALUES(NULL,'EDUARDO','M',NULL,'54376457');
+INSERT INTO clientes VALUES(NULL,'ANTONIO','F','ANTONIO@IG.COM','12436767');
+INSERT INTO clientes VALUES(NULL,'ANTONIO','M','ANTONIO@UOL.COM','3423565');
+INSERT INTO clientes VALUES(NULL,'ELAINE','M','ELAINE@GLOBO.COM','32567763');
+INSERT INTO clientes VALUES(NULL,'CARMEM','M','CARMEM@IG.COM','787832213');
+INSERT INTO clientes VALUES(NULL,'ADRIANA','F','ADRIANA@GMAIL.COM','88556942');
+INSERT INTO clientes VALUES(NULL,'JOICE','F','JOICE@GMAIL.COM','55412256');
+
+desc endereco;
+
+insert into endereco values(null,'rua inacio da cunha','vila fatima','piracicaba','sp',1);
+insert into endereco values(null,'rua teodoro','algodoal','sao paulo','SP',2);
+insert into endereco values(null,'rua prudente','diamante','belo horizonte','MG',3);
+insert into endereco values(null,'rua augusto','metropolis','new york','ES',4);
+insert into endereco values(null,'rua boa morte','vila fatima','piracicaba','SP',5);
+insert into endereco values(null,'rua paul de bolas','vila rezende','gotham city','MT',6);
+insert into endereco values(null,'rua inacio da cunha','vila fatima','piracicaba','SP',7);
+insert into endereco values(null,'rua gilberto moraes','paulista','rio de janeiro','RJ',8);
+insert into endereco values(null,'rua cristo redentor','copacabana','rio de janeiro','RJ',9);
+insert into endereco values(null,'rua brasilia','queens','new york','BA',10);
+
+
+INSERT INTO endereco VALUES(NULL,'RUA VISCONDESSA','CENTRO','RIO DE JANEIRO','RJ',11);
+INSERT INTO endereco VALUES(NULL,'RUA NELSON MANDELA','COPACABANA','RIO DE JANEIRO','RJ',12);
+INSERT INTO endereco VALUES(NULL,'RUA ARAUJO LIMA','CENTRO','VITORIA','ES',13);
+INSERT INTO endereco VALUES(NULL,'RUA CASTRO ALVES','LEBLON','RIO DE JANEIRO','RJ',14);
+INSERT INTO endereco VALUES(NULL,'AV CAPITAO ANTUNES','CENTRO','CURITIBA','PR',15);
+INSERT INTO endereco VALUES(NULL,'AV CARLOS BARROSO','JARDINS','SAO PAULO','SP',16);
+INSERT INTO endereco VALUES(NULL,'ALAMEDA SAMPAIO','BOM RETIRO','CURITIBA','PR',17);
+INSERT INTO endereco VALUES(NULL,'RUA DA LAPA','LAPA','SAO PAULO','SP',18);
+INSERT INTO endereco VALUES(NULL,'RUA GERONIMO','CENTRO','RIO DE JANEIRO','RJ',19);
+INSERT INTO endereco VALUES(NULL,'RUA GOMES FREIRE','CENTRO','RIO DE JANEIRO','RJ',20);
+INSERT INTO endereco VALUES(NULL,'RUA GOMES FREIRE','CENTRO','RIO DE JANEIRO','RJ',21);
+INSERT INTO endereco VALUES(NULL,'RUA OLIVEIRA','CENTRO','RIO DE JANEIRO','RJ',22);
+INSERT INTO endereco VALUES(NULL,'RUA GOMES ','CENTRO','RIO DE JANEIRO','RJ',23);
+
+
+
+
+
+insert into telefone values(null,'cel','983672547',1);
+insert into telefone values(null,'res','657482934',1);
+insert into telefone values(null,'com','728354689',1);
+insert into telefone values(null,'cel','934275936',2);
+insert into telefone values(null,'res','783546723',2);
+insert into telefone values(null,'cel','943647828',3);
+insert into telefone values(null,'com','342846850',3);
+insert into telefone values(null,'cel','954738465',4);
+insert into telefone values(null,'res','836473595',4);
+insert into telefone values(null,'com','875620964',4);
+insert into telefone values(null,'cel','983640075',5);
+insert into telefone values(null,'cel','333548264',5);
+
+
+
+INSERT INTO telefone VALUES(NULL,'RES','68976565',6);
+INSERT INTO telefone VALUES(NULL,'CEL','99656675',6);
+INSERT INTO telefone VALUES(NULL,'CEL','33567765',6);
+INSERT INTO telefone VALUES(NULL,'CEL','88668786',7);
+INSERT INTO telefone VALUES(NULL,'COM','55689654',7);
+INSERT INTO telefone VALUES(NULL,'COM','88687979',8);
+INSERT INTO telefone VALUES(NULL,'COM','88965676',9);
+INSERT INTO telefone VALUES(NULL,'CEL','89966809',9);
+INSERT INTO telefone VALUES(NULL,'COM','88679978',9);
+INSERT INTO telefone VALUES(NULL,'CEL','99655768',9);
+INSERT INTO telefone VALUES(NULL,'RES','89955665',10);
+INSERT INTO telefone VALUES(NULL,'RES','77455786',10);
+INSERT INTO telefone VALUES(NULL,'RES','89766554',11);
+INSERT INTO telefone VALUES(NULL,'RES','77755785',11);
+INSERT INTO telefone VALUES(NULL,'COM','44522578',12);
+
+
+/* inner join */
+
+select nome,sexo,bairro,cidade #projeção
+from clientes
+inner join endereco   #juncao
+on idcliente = id_cliente
+where sexo = 'm';   #seleçao
+
+select nome,numero,tipo,email
+from clientes 
+inner join telefone 
+on idcliente = id_cliente;
+
+select c.nome,c.sexo,e.bairro,e.cidade,t.tipo,t.numero
+from clientes c 
+inner join endereco e 
+on c.idcliente = e.id_cliente
+inner join telefone t  
+on c.idcliente = t.id_cliente
+where bairro   = 'vila fatima';
+
+select c.nome,c.email,e.estado,e.cidade,e.bairro,t.numero
+from clientes c 
+inner join endereco e 
+on c.idcliente = e.id_cliente 
+inner join telefone t 
+on c.idcliente = t.id_cliente;
+
+desc clientes ;
+desc endereco ;
+desc telefone ;
+
+select idcliente,nome,sexo,email,cpf,
+idendereco,rua,bairro,cidade,estado,idtelefone,tipo,numero
+from clientes c 
+inner join endereco e 
+on c.idcliente = e.id_cliente
+inner join telefone t 
+on c.idcliente = t.id_cliente
+where sexo = 'f';
+
+select count(*) nome
+from clientes
+where sexo = 'f'
+group by sexo;
+
+select nome,idcliente,numero,idtelefone 
+from clientes c 
+inner join telefone t 
+on c.idcliente = t.id_cliente 
+where nome = 'julia'
+and idcliente = '2'
+and idtelefone = '4';
+
+update telefone  
+set numero = '971133657'
+where id_cliente = '2'
+and idtelefone = '4';
+
+select nome,email,numero
+from clientes c 
+inner join telefone t 
+on c.idcliente = t.id_cliente 
+inner join endereco e 
+on c.idcliente = e.id_cliente 
+where estado = 'SP'
+and sexo = 'f';
+
+
+select nome,
+       IFNULL(email,'nao tem email') as email,
+       estado,
+       numero
+from clientes c 
+inner join endereco e
+on c.idcliente = e.id_cliente 
+inner join telefone t
+on c.idcliente = t.id_cliente;
+
+
+#ifnull é uma funcao para alterar o nome de registros nulos#
+
+SELECT IFNULL(email,'*******')as email ,nome  from clientes c ;
+
+      #VIEWS
+
+SELECT c.nome,
+       c.sexo,
+       c.email,
+       t.numero,
+       e.estado,
+       e.cidade
+from clientes c 
+inner join telefone t 
+on c.idcliente = t.id_cliente 
+inner join endereco e 
+on c.idcliente = e.id_cliente;
+
+
+create view v_relatorio as
+SELECT c.nome,
+       c.sexo,
+       ifnull(c.email,'***********') as email,
+       t.numero,
+       e.estado,
+       e.cidade
+from clientes c 
+inner join telefone t 
+on c.idcliente = t.id_cliente 
+inner join endereco e 
+on c.idcliente = e.id_cliente;
+
+#uma query dentro da query #
+select email,nome from v_relatorio;
+
+select nome,email,numero,estado,cidade
+from v_relatorio
+where estado= 'RJ';
+
+select * from v_relatorio
+order by nome,estado ;
+
+
+create procedure consulta_clientes(p_idcliente int)
+
+begin
+   select nome,email,cpf from clientes 
+   where idcliente = p_idcliente;
+end
+
+call consulta_clientes(2);
+call consulta_clientes(4);
+call consulta_clientes(9);
+
+
+
+
+
+#criando chaves por fora da tabela usando alter table #
+
+
+################################################################
+
+create table herois (
+idherois int,
+nome varchar(20) not null,
+poderes varchar(20) not null
+);
+
+
+create table viloes (
+idviloes int,
+nome varchar(20) not null,
+poderes varchar(20) not null,
+id_herois int
+);
+
+create table anti_herois (
+idantiherois int,
+nome varchar(20) not null,
+poderes varchar(20) not null,
+id_herois int
+);
+
+alter table herois add constraint pk_herois 
+primary key(idherois);
+
+alter table viloes add constraint pk_viloes 
+primary key(idviloes);
+
+alter table viloes add constraint fk_viloes_herois
+foreign key(id_herois) references herois(idherois);
+
+alter table anti_herois add constraint pk_antiherois
+primary key(idantiherois);
+
+alter table anti_herois add constraint fk_antiherois_herois
+foreign key(id_herois) references herois(idherois);
+
+
+
+
+
+
+
+
+
+
+
+
+
