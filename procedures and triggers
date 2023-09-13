@@ -1,0 +1,157 @@
+create table cursos(
+idcurso int primary key auto_increment,
+nome varchar(30) not null,
+horas int(3) not null,
+valor float not null
+);
+
+insert into cursos values (null,'java',30,500.00);
+insert into cursos values (null,'phyton',40,700.00);
+
+
+create procedure cad_cursos(p_nome varchar(30),
+                            p_horas int(3),
+                            p_valor float  )
+                                         
+begin
+	
+	insert into cursos values(null,p_nome,p_horas,p_valor);
+	
+end
+
+call cad_cursos('banco de dados',50,330.00);
+call cad_cursos('oracle',25,80.00);
+call cad_cursos('html',70,400.00);
+
+
+create procedure consulta_cursos(p_idcurso int)
+begin
+	
+	select nome,horas,valor from cursos
+	where idcurso = p_idcurso;
+	
+end
+
+call consulta_cursos(3);
+call consulta_cursos(5);
+
+#inicio as triggers#
+
+
+create table usuario (
+idusuario int primary key auto_increment,
+nome varchar(30),
+login varchar(30),
+senha varchar(100)
+);
+
+create table bkp_usuario (
+idbackup int primary key auto_increment,
+idusuario int,
+nome varchar(30),
+login varchar(30),
+evento char (1)
+);
+
+create trigger backup_user
+before delete on usuario 
+for each row 
+BEGIN 
+	
+	insert into bkp_usuario values(null,old.idusuario,old.nome,old.login,'D');
+	
+END
+
+insert into usuario values(null,'leon','leonscott@gmail','123456789');
+insert into usuario values(null,'ada','adawong@gmail','123456746');
+
+
+select * from usuario ;
+
+delete from usuario 
+where nome = 'leon';
+
+delete from usuario 
+where idusuario = '2';
+
+select * from bkp_usuario ;
+
+
+
+create trigger backup_insert
+after insert on usuario 
+for each row
+begin
+
+	insert into bkp_usuario values(
+	null,new.idusuario,new.nome,new.login,'i'
+	);
+	
+end	
+
+
+insert into usuario values(null,'chris','redfield@gmail','123ee6789');
+insert into usuario values(null,'bruce','wayne@gmail','127hje6789');
+
+select * from bkp_usuario ;
+
+
+
+
+
+##################################
+
+
+CREATE TABLE PRODUTO(
+	IDPRODUTO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30),
+	VALOR FLOAT(10,2)
+);
+
+INSERT INTO PRODUTO VALUES(NULL,'LIVRO MODELAGEM',50.00);
+INSERT INTO PRODUTO VALUES(NULL,'LIVRO BI',80.00);
+INSERT INTO PRODUTO VALUES(NULL,'LIVRO ORACLE',70.00);
+INSERT INTO PRODUTO VALUES(NULL,'LIVRO SQL SERVER',100.00);
+
+
+CREATE TABLE BKP_PRODUTO(
+	IDBACKUP INT PRIMARY KEY AUTO_INCREMENT,
+	IDPRODUTO INT,
+	NOME VARCHAR(30),
+	VALOR_ORIGINAL FLOAT(10,2),
+	VALOR_ALTERADO FLOAT(10,2),
+	DATA DATETIME,
+	USUARIO VARCHAR(30),
+	EVENTO CHAR(1)
+	
+);
+
+select * from PRODUTO;
+
+
+
+create trigger update_produto
+after update on PRODUTO
+for each row
+BEGIN 
+	
+	insert into BKP_PRODUTO values(null,old.idproduto,old.nome,old.valor,new.valor,now(),
+	current_user(),'U');
+	
+END
+
+update PRODUTO set valor = '80.00'
+where IDPRODUTO = '3';
+
+update PRODUTO set valor = '50'
+where IDPRODUTO = '1';
+
+select * from BKP_PRODUTO;
+
+
+
+
+
+
+
+
